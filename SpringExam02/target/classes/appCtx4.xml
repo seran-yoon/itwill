@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 	xmlns=			"http://www.springframework.org/schema/beans"
+		xmlns:context=	"http://www.springframework.org/schema/context"
+		xmlns:xsi=		"http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation=
+		   "http://www.springframework.org/schema/beans 
+			https://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context
+			https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config />
+	
+	<!--  MemberDao 타입의 빈 객체가 존재하지 않는다.
+	<bean id="memberDao" class="com.class1.spring.MemberDao"></bean>
+	-->
+	
+	<!-- @Autowired 어노테이션에 적용된 생성자에 주입할 MemberDao 타입의 빈 객체가 존재하지 않는다. -->
+	<bean id="memberRegSvc" class="com.class1.spring.MemberRegisterService"></bean>
+
+	<bean id="printer" class="com.class1.spring.MemberPrinter"></bean>
+	<bean id="printer2" class="com.class1.spring.MemberPrinter"></bean>
+	
+	<!-- @Autowired 어노테이션에 적용된 memDao필드에 주입할 MemberDao 타입의 빈 객체가 존재하지 않는다. -->
+	<bean id="infoPrinter" class="com.class1.spring.MemberInfoPrinter"></bean>			
+			
+</beans>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
