@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 	xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd">
+		
+		<!-- <bean>태그는 MemberDao타입의 빈 객체를 생성해서 memberDao라는 이름으로 보관한다는 의미 -->
+		<bean id="memberDao" class="com.class1.spring.MemberDao"></bean>
+		<!-- com.class1.spring.memberDao memberDao = new com.class1.spring.memberDao();와 같은 의미 -->
+		
+		<!-- <constructor-arg>태그는 생성자를 이용해서 의존 객체를 주입할 때 사용한다 -->
+		<bean id="memberRegSvc" class="com.class1.spring.MemberRegisterService">
+			<!-- 이름이 memberDao인 다른 빈 객체를 생성자에 전달한다 -->
+			<constructor-arg ref="memberDao"/>
+		</bean>
+		<!-- com.class1.spring.MemberRegisterService memberRegSvc = new com.class1.spring.MemberRegisterService(memberDao);와 같은 의미 -->
+		
+		<bean id="changePwdSvc" class="com.class1.spring.ChangePasswordService">
+			<constructor-arg ref="memberDao"/>
+		</bean>
+		<!-- com.class1.spring.ChangePasswordService changePwdSvc = new com.class1.spring.ChangePasswordService(memberDao);와 같은 의미 -->
+		
+		<bean id="listPrinter" class="com.class1.spring.MemberListPrinter">
+			<constructor-arg ref="memberDao"/>
+			<constructor-arg ref="memberPrinter"/>
+		</bean>
+		
+		<bean id="memberPrinter" class="com.class1.spring.MemberPrinter"></bean>
+		
+		<bean id="infoPrinter" class="com.class1.spring.MemberInfoPrinter">
+			<property name="memberDao" ref="memberDao"/>
+			<property name="printer" ref="memberPrinter"/>
+		</bean>
+		
+		<bean id="versionPrinter" class="com.class1.spring.VersionPrinter">
+			<property name="majorVersion" value="4"/> 
+			<property name="minorVersion">
+				<value>3</value>
+			</property>
+			<!-- 두가지 버전은 같은 의미이다. 태그를 생성할 때 value값을 직접 작성할 수 있고, 태그 안에 value를 지정(보낼 value값이 여러개면 이렇게 쓰는게 좋음)해 줄 수 있다 -->
+		</bean>
+		
+</beans>
