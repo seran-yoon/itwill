@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 	xmlns="http://www.springframework.org/schema/beans"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context
+			https://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<!-- 1. <context:annotation-config/> 설정 추가 -->
+	<context:annotation-config/>
+
+	<!-- 2. @Configuration 어노테이션 적용 클래스를  <bean>태그로 등록한다 -->
+	<bean class="com.class1.config.JavaSubConf"/>
+
+
+	<bean id="memberDao" class="com.class1.spring.MemberDao"/>
+	<bean id="infoPrinter" class="com.class1.spring.MemberInfoPrinter">
+		<property name="memberDao" ref="memberDao"/>
+		<property name="printer" ref="memberPrinter"/>
+	</bean>
+
+</beans>
